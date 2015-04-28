@@ -49,7 +49,7 @@ package com.example.overzestful.editupdatewebserver;
 public class MainActivity extends Activity {
 
     ArrayList<HashMap<String, String>> MyArrList;
-    String[] Cmd = {"View","Update","Delete"};
+    String[] Cmd = {"View","Update","Delete","d"};
 
     @SuppressLint("NewApi")
     @Override
@@ -115,11 +115,14 @@ public class MainActivity extends Activity {
 
                 map = new HashMap<String, String>();
                 map.put("MemberID", c.getString("MemberID"));
-                map.put("Username", c.getString("Username"));
-                map.put("Password", c.getString("Password"));
-                map.put("Name", c.getString("Name"));
-                map.put("Email", c.getString("Email"));
-                map.put("Tel", c.getString("Tel"));
+                map.put("ActivityName", c.getString("ActivityName"));
+                map.put("ActivityStaff", c.getString("ActivityStaff"));
+                map.put("SpinnerType", c.getString("SpinnerType"));
+                map.put("Hour", c.getString("Hour"));
+                map.put("DateStart", c.getString("DateStart"));
+                map.put("TimeStart", c.getString("TimeStart"));
+                map.put("DateEnd", c.getString("DateEnd"));
+                map.put("TimeEnd", c.getString("TimeEnd"));
                 MyArrList.add(map);
 
             }
@@ -162,8 +165,8 @@ public class MainActivity extends Activity {
             Toast.makeText(MainActivity.this,"Your Selected Update",Toast.LENGTH_LONG).show();
 
             String sMemberID = MyArrList.get(info.position).get("MemberID").toString();
-            String sName = MyArrList.get(info.position).get("Name").toString();
-            String sTel = MyArrList.get(info.position).get("Tel").toString();
+            String sActivityName = MyArrList.get(info.position).get("ActivityName").toString();
+            String sDateStart = MyArrList.get(info.position).get("DateStart").toString();
 
             Intent newActivity = new Intent(MainActivity.this,UpdateActivity.class);
             newActivity.putExtra("MemberID", sMemberID);
@@ -174,7 +177,13 @@ public class MainActivity extends Activity {
             /**
              * Call the mthod
              */
-        }
+
+    } else if ("d".equals(CmdName)) {
+        Toast.makeText(MainActivity.this,"Your Selected Delete",Toast.LENGTH_LONG).show();
+        /**
+         * Call the mthod
+         */
+    }
         return true;
     }
 
@@ -221,12 +230,12 @@ public class MainActivity extends Activity {
             // R.id.ColName
             TextView txtName = (TextView) convertView.findViewById(R.id.ColName);
             txtName.setPadding(5, 0, 0, 0);
-            txtName.setText(MyArrList.get(position).get("Name"));
+            txtName.setText(MyArrList.get(position).get("ActivityName"));
 
             // R.id.ColTel
             TextView txtTel = (TextView) convertView.findViewById(R.id.ColTel);
             txtTel.setPadding(5, 0, 0, 0);
-            txtTel.setText(MyArrList.get(position).get("Tel"));
+            txtTel.setText(MyArrList.get(position).get("DateStart"));
 
 
             return convertView;
